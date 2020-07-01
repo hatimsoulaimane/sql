@@ -1,0 +1,82 @@
+Exercice 1:
+
+1/ SELECT * FROM un ;
+-- resultat==> tout les elements du tableau un
+
+2/ SELECT a FROM un ;
+-- resultat==>x,x,y,z
+
+3. SELECT a FROM un WHERE c=1 ;
+-- resultat==>x,z
+
+4. SELECT a FROM un WHERE c=1 OR c=2 ;
+-- resultat ===> x,x,y,z
+
+5. SELECT DISTINCT a FROM un WHERE c=1 OR c=2 ;
+-- resultat==> x,y,z
+
+6. SELECT a FROM un ORDER BY b ;
+-- resultat==>x,y,x,z
+
+7. SELECT a, e FROM un, deux ;
+-- resultat==> a=x,x,y,z et e=8,4,1
+
+8. SELECT a, e FROM un, deux WHERE c=e ;
+-- resultat==> a=x,x,y,z et e=2,1,4,1
+
+-- Exercice1:
+-- Afficher le nom, la ville et la région de tous les éditeurs.
+-- select  nomediteur, ville, region
+-- from editeur;
+-- resultat==> 8rows
+
+-- Exercice 2 : LIKE, BETWEEN, AND
+--
+-- select NomEmploye, PnEmploye, DateEmbauche
+-- from employe
+-- where NomEmploye like 'l%' and PositionEmploye between 10 and 100 and DateEmbauche between '1990-01-01'and '1990-12-31';
+
+-- resultat==> 1 ROWS
+
+-- Exercice 3 : ORDER BY
+-- select NomEmploye, DateEmbauche
+-- from employe
+-- order by IdEditeur asc  ;
+
+-- select NomEmploye, DateEmbauche
+-- from employe
+-- order by NomEmploye asc  ;
+
+-- resultat==> 43 rows
+
+
+-- Exercice 4 : IN, ORDER BY
+-- select NomAuteur, Pays, Adresse
+-- from auteur
+-- where Pays in ('FR','BE','CH');
+
+-- resultat==> 20
+
+-- Exercice 5 : GROUP BY, COUNT, MIN, MAX
+-- select PositionEmploye, count(PositionEmploye) AS 'NbEmploye', MAX(DateEmbauche) AS 'Ancien', MIN(DateEmbauche) AS 'Recent'
+-- from employe
+-- group by PositionEmploye
+-- having PositionEmploye;
+
+-- resultat==> 14 rows
+
+-- Exercice 6 : GROUP BY, MAX
+-- select IdTitre, MAX(Droit)
+-- from droitprevu
+-- group by IdTitre
+-- having sum(Droit);
+-- resultat==> 12 rows
+
+-- Exercice 7 : GROUP BY, clause sur un sous-ensemble HAVING
+-- # Exercice 7 : GROUP BY, clause sur un sous-ensemble HAVING
+-- # select Pays, count(IdEditeur) 'Nombre Editeur'
+-- # from editeur
+-- # group by Pays
+-- # having  Pays like '%S%'
+-- # OR pays like '%R%';
+-- # 3 lignes
