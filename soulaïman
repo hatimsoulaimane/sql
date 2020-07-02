@@ -1,27 +1,27 @@
-Exercice 1:
+-- Exercice 1:
 
-1/ SELECT * FROM un ;
+-- 1/ SELECT * FROM un ;
 -- resultat==> tout les elements du tableau un
 
-2/ SELECT a FROM un ;
+-- 2/ SELECT a FROM un ;
 -- resultat==>x,x,y,z
 
-3. SELECT a FROM un WHERE c=1 ;
+-- 3. SELECT a FROM un WHERE c=1 ;
 -- resultat==>x,z
 
-4. SELECT a FROM un WHERE c=1 OR c=2 ;
+-- 4. SELECT a FROM un WHERE c=1 OR c=2 ;
 -- resultat ===> x,x,y,z
 
-5. SELECT DISTINCT a FROM un WHERE c=1 OR c=2 ;
+-- 5. SELECT DISTINCT a FROM un WHERE c=1 OR c=2 ;
 -- resultat==> x,y,z
 
-6. SELECT a FROM un ORDER BY b ;
+-- 6. SELECT a FROM un ORDER BY b ;
 -- resultat==>x,y,x,z
 
-7. SELECT a, e FROM un, deux ;
+-- 7. SELECT a, e FROM un, deux ;
 -- resultat==> a=x,x,y,z et e=8,4,1
 
-8. SELECT a, e FROM un, deux WHERE c=e ;
+-- 8. SELECT a, e FROM un, deux WHERE c=e ;
 -- resultat==> a=x,x,y,z et e=2,1,4,1
 
 -- Exercice1:
@@ -80,3 +80,32 @@ Exercice 1:
 -- # having  Pays like '%S%'
 -- # OR pays like '%R%';
 -- # 3 lignes
+
+
+-- # Exercice 9 : Jointure entre trois tables
+-- select NomAuteur, Titre, Prix
+-- # from auteur, titre, titreauteur
+-- # where auteur.IdAuteur = titreauteur.IdAuteur
+-- # and titreauteur.IdTitre = titre.IdTitre;
+-- # resultat==> 20 rows
+
+-- Exercice 10 : Jointure sur quatre tables, ORDER BY
+-- select NomEditeur, Titre, NomMag, Qt
+-- from editeur, titre, vente, magasin
+-- where editeur.IdEditeur = titre.IdEditeur
+-- and titre.IdTitre = vente.IdTitre
+-- and vente.IdMag = magasin.IdMag
+-- order by NomEditeur, Titre, NomMag, Qt;
+resultat==> 18 rows
+
+-- Exercice 11 : jointure sur 4 tables, GROUP BY, HAVING, SUM
+-- select NomAuteur, sum(Qt)
+-- from auteur, titreauteur, titre, vente
+-- where auteur.IdAuteur = titreauteur.IdAuteur
+-- and titreauteur.IdTitre = titre.IdTitre
+-- and vente.IdTitre = titre.IdTitre
+-- group by NomAuteur
+-- having sum(Qt) >= 20;
+resultat==> 10 rows
+
+-- Exercice 12 : 2 sous-requêtes, EXIST, ALL
