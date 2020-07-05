@@ -108,4 +108,73 @@ resultat==> 18 rows
 -- having sum(Qt) >= 20;
 resultat==> 10 rows
 
--- Exercice 12 : 2 sous-requêtes, EXIST, ALL
+
+# Exercice 12 : 2 sous-requêtes, EXIST, ALL
+select distinct NomAuteur, PnAuteur
+from auteur
+where EXISTS(select DroitPourCent
+             from titreauteur
+             where auteur.IdAuteur = titreauteur.IdAuteur)
+    and 100 = all (select DroitPourCent
+from titreauteur
+where titreauteur.DroitPourCent = 100)
+order by NomAuteur;
+//=============================================
+#  select  NomAuteur, PnAuteur
+# from auteur
+# where EXISTS    (select DroitPourCent
+#                 from titreauteur
+#                  where auteur.IdAuteur = titreauteur.IdAuteur
+#                 and  titreauteur.DroitPourCent = 100)
+# order by NomAuteur;
+# resultat 7 rows
+
+Exercice 13 : 1 sous-requête, MAX
+
+# select Titre, max(Prix)
+# from titre
+# having max(Prix);
+
+# select Titre
+# from titre
+# where Prix in (select Prix
+#               from titre
+#                 having max(Prix));
+# resultat==> 1 rows (Guide des bases de données du gestionnaire pressé)
+
+
+
+Exercice 14 : 1 sous-requête utilisée dans la clause SELECT, SUM
+
+# select Titre, CumulAnnuelVente
+# from titre
+# where CumulAnnuelVente in (select CumulAnnuelVente
+#                             from titre)
+# order by Titre,CumulAnnuelVente;
+
+# select Titre, CumulAnnuelVente
+# from titre
+# where CumulAnnuelVente in (select CumulAnnuelVente
+#                            from titre, vente, magasin
+#                             where titre.IdTitre = vente.IdTitre
+#                             and vente.IdMag = magasin.IdMag)
+# order by Titre,CumulAnnuelVente;
+resultat==> 13 rows
+
+# Exercice 15 : 1 sous-requête, MAX
+# select max(CumulAnnuelVente)
+# from titre
+# where CumulAnnuelVente in (select CumulAnnuelVente
+#     from magasin, vente
+#     where magasin.IdMag=vente.IdMag
+#     and vente.IdTitre= titre.IdTitre)
+# having max(CumulAnnuelVente);
+resultat==> 1 rows
+
+
+# Exercice 15 bis:
+# select NomEditeur, editeur.IdEditeur
+# from editeur, titre
+# group by Type
+# having Type like 'informatique%';
+resultat==> 1 rows
