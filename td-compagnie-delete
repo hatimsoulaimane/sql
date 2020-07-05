@@ -1,0 +1,8 @@
+use compagnie_aerienne;
+drop table if exists avion;
+drop table if exists type;
+drop table if exists constructeur;
+drop table if exists aéroport;
+drop table if exists vol;
+drop table if exists affectation;
+drop table if exists pilote;
